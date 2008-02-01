@@ -14,64 +14,15 @@ use B ();
 use Class::C3;
 #use Devel::Peek;
 
-$JavaScript::Dumper::VERSION = '0.001';
+$JavaScript::Dumper::VERSION = '0.002';
 
 @JavaScript::Dumper::EXPORT = qw(js_dumper);
 
-*js_dumper = *to_json;   # will be obsoleted.
+my $JSON; # cache
 
-# Functions
-
-my %encode_allow_method
-     = map {($_ => 1)} qw/utf8 pretty allow_nonref latin1 allow_tied self_encode escape_slash
-                          allow_blessed convert_blessed
-                        /;
-my %decode_allow_method
-     = map {($_ => 1)} qw/utf8 allow_nonref disable_UTF8 strict singlequote allow_bigint
-                          allow_barekey literal_value max_size relaxed/;
-
-
-sub to_json { # encode
-    my ($obj, $opt) = @_;
-
-    if ($opt) {
-        my $json = JavaScript::Dumper->new->utf8;
-
-        for my $method (keys %$opt) {
-            Carp::croak("non acceptble option")
-                unless (exists $encode_allow_method{$method});
-            $json->$method($opt->{$method});
-        }
-
-        return $json->encode($obj);
-    }
-    else {
-        return __PACKAGE__->new->utf8->encode($obj);
-    }
-
+sub js_dumper ($) { # encode
+    ($JSON ||= __PACKAGE__->new->utf8)->encode(@_);
 }
-
-
-sub from_json { # decode
-    my ($obj, $opt) = @_;
-
-    if ($opt) {
-        my $json = JavaScript::Dumper->new->utf8;
-
-        for my $method (keys %$opt) {
-            Carp::croak("non acceptble option")
-                unless (exists $decode_allow_method{$method});
-            $json->$method($opt->{$method});
-        }
-
-        return $json->decode($obj);
-    }
-    else {
-        __PACKAGE__->new->utf8->decode(shift);
-    }
-}
-
-
 
 ###############################
 
@@ -79,7 +30,7 @@ sub from_json { # decode
 ### Perl => JSON
 ###
 
-sub valueToJson {
+sub value_to_json {
 	my ($self, $value) = @_;
 	my $type = ref($value);
 	if ($type eq 'SCALAR' &&  $$value !~ /^[01]$/) {

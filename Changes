@@ -1,5 +1,9 @@
 Revision history for JavaScript-Dumper
 
-0.01    Date/time
+0.002   2008/02/01
+        Fixed problems with JSON::PP due to interface changes
+        added tests 
+
+0.001   Date/time
         First version, released on an unsuspecting world.
 
