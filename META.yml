@@ -1,11 +1,11 @@
 --- #YAML:1.0
 name:                JavaScript-Dumper
-version:             0.002
+version:             0.004
 abstract:            Dump JavaScript data structures from Perl objects. Allows unquoted strings and numbers. 
 license:             ~
 author:              
     - Moritz Onken <onken@houseofdesign.de>
-generated_by:        ExtUtils::MakeMaker version 6.42
+generated_by:        ExtUtils::MakeMaker version 6.44
 distribution_type:   module
 requires:     
     Class::C3:                     0

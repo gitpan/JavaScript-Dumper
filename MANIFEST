@@ -1,8 +1,12 @@
+.cvsignore
+.project
 Changes
-MANIFEST
-Makefile.PL
-README
 lib/JavaScript/Dumper.pm
+Makefile.PL
+MANIFEST
+README
 t/00-load.t
+t/01-dump.t
+t/boilerplate.t
 t/pod.t
 META.yml                                 Module meta-data (added by MakeMaker)

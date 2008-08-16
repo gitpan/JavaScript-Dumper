@@ -1,5 +1,8 @@
 Revision history for JavaScript-Dumper
 
+0.004   2008/08/16
+        Fixed warnings
+
 0.002   2008/02/01
         Fixed problems with JSON::PP due to interface changes
         added tests 

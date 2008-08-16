@@ -14,7 +14,7 @@ use B ();
 use Class::C3;
 #use Devel::Peek;
 
-$JavaScript::Dumper::VERSION = '0.002';
+$JavaScript::Dumper::VERSION = '0.004';
 
 @JavaScript::Dumper::EXPORT = qw(js_dumper);
 
@@ -32,8 +32,8 @@ sub js_dumper ($) { # encode
 
 sub value_to_json {
 	my ($self, $value) = @_;
-	my $type = ref($value);
-	if ($type eq 'SCALAR' &&  $$value !~ /^[01]$/) {
+	my $type = ref($value) || "foo"; #spews awkward warnings out without the foo
+	if ($type eq "SCALAR" && $$value !~ /^[01]$/) {
 		return "true" if($$value eq "1");
 		return "false" if($$value eq "0");
 		return $$value;
@@ -68,14 +68,14 @@ JavaScript::Dumper - Dump JavaScript data structures from Perl objects. Allows u
 
  use JavaScript::Dumper;
 
- my $js = js_dumper([{foo => "bar", call => \"function"}]);
+ my $js = js_dumper([{foo => "bar", number => 12345, boolean => \1, call => \"function"}]);
  
  # results in:
- # $js = "[{"foo": "bar", "call": function}]"; 
+ # $js = "[{"foo": "bar", "number" => 12345, "boolean" => true, "call": function}]"; 
 
 =head1 DESCRIPTION
 
-This module uses L<JSON::PP> as base and overrides C<valueToJson> to accept SCALAR-refs to be returned without quotes.
+This module uses L<JSON::PP> as base and overrides C<value_to_json> to accept SCALAR-refs to be returned without quotes.
 
 =head1 FUNCTIONS
 
@@ -85,8 +85,9 @@ This module uses L<JSON::PP> as base and overrides C<valueToJson> to accept SCAL
 
 Dumps any perl data structure.
 
-\'1' becomes "true"
-\'0' becomes "false"
+  \'1' becomes "true"
+
+  \'0' becomes "false"
 
 See L<JSON::PP> or L<JSON::XS> for more details.
 
