@@ -1,5 +1,8 @@
 Revision history for JavaScript-Dumper
 
+0.005   2008/08/17
+        Fixed stringified numbers printed with quotes
+
 0.004   2008/08/16
         Fixed warnings
 

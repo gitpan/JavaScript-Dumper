@@ -14,7 +14,7 @@ use B ();
 use Class::C3;
 #use Devel::Peek;
 
-$JavaScript::Dumper::VERSION = '0.004';
+$JavaScript::Dumper::VERSION = '0.005';
 
 @JavaScript::Dumper::EXPORT = qw(js_dumper);
 
@@ -37,7 +37,7 @@ sub value_to_json {
 		return "true" if($$value eq "1");
 		return "false" if($$value eq "0");
 		return $$value;
-	} elsif(!$type && $value =~ /^\d+$/ ) {
+	} elsif($type eq "foo" && $value =~ /^\d+$/ ) {
 		return $value;
 	}
 	$self->next::method($value);
