@@ -1,5 +1,8 @@
 Revision history for JavaScript-Dumper
 
+0.006   2008/08/18
+        Fixed unicode problem.
+
 0.005   2008/08/17
         Fixed stringified numbers printed with quotes
 

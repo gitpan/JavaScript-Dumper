@@ -14,14 +14,14 @@ use B ();
 use Class::C3;
 #use Devel::Peek;
 
-$JavaScript::Dumper::VERSION = '0.005';
+$JavaScript::Dumper::VERSION = '0.006';
 
 @JavaScript::Dumper::EXPORT = qw(js_dumper);
 
 my $JSON; # cache
 
 sub js_dumper ($) { # encode
-    ($JSON ||= __PACKAGE__->new->utf8)->encode(@_);
+    ($JSON ||= __PACKAGE__->new)->encode(@_);
 }
 
 ###############################
@@ -32,7 +32,7 @@ sub js_dumper ($) { # encode
 
 sub value_to_json {
 	my ($self, $value) = @_;
-	my $type = ref($value) || "foo"; #spews awkward warnings out without the foo
+	my $type = ref($value) || "foo"; #spews out awkward warnings without the foo
 	if ($type eq "SCALAR" && $$value !~ /^[01]$/) {
 		return "true" if($$value eq "1");
 		return "false" if($$value eq "0");
