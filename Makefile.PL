@@ -10,7 +10,7 @@ WriteMakefile(
     PL_FILES            => {},
     PREREQ_PM => {
         'Test::More' => 0,
-	'JSON::PP' => 2.04,
+	'JSON::PP' => 2.14,
 	'Class::C3' => 0
     },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },

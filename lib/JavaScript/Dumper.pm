@@ -11,9 +11,8 @@ use Carp ();
 use B ();
 
 use Class::C3;
-#use Devel::Peek;
 
-$JavaScript::Dumper::VERSION = '0.008';
+$JavaScript::Dumper::VERSION = '0.01';
 
 @JavaScript::Dumper::EXPORT = qw(js_dumper);
 
@@ -33,7 +32,7 @@ sub value_to_json {
 		return "false" if($$value eq "0");
 		return $$value;
 	} elsif(!$type && $value =~ /^\d+$/ ) {
-		return $value;
+		return $value if(eval($value) eq $value);
 	}
 	$self->next::method($value);
 }
