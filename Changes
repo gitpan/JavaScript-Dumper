@@ -1,5 +1,8 @@
 Revision history for JavaScript-Dumper
 
+0.011   2009/03/24
+        fixed warning
+
 0.01    2009/03/09
         00 got unquoted
 

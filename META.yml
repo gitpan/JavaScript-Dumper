@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               JavaScript-Dumper
-version:            0.01
+version:            0.011
 abstract:           Dump JavaScript data structures from Perl objects. Allows unquoted strings and numbers. 
 author:
     - Moritz Onken <onken@houseofdesign.de>

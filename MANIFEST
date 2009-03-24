@@ -1,5 +1,3 @@
-.cvsignore
-.project
 Changes
 lib/JavaScript/Dumper.pm
 Makefile.PL
